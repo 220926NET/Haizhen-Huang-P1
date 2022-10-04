@@ -1,8 +1,13 @@
-﻿// users login/register
+﻿//namespace
 
+
+// users login/registe interface feature
 string isUser;
 string userName;
 string userPassword;
+Dictionary<string, string> userInfo = new Dictionary<string, string>();
+userInfo.Add("haizhen", "000");
+
 
 Console.WriteLine("Are you an existing user? ");
 Console.WriteLine("Y/N: ");
@@ -16,10 +21,13 @@ if(isUser == "Y" || isUser == "y"){
     Console.WriteLine("Please enter your password: ");
     userPassword = Console.ReadLine();
 
-    LoginAndRegister.login(userName, userPassword);
+
+    LoginUI.login(userName, userPassword, userInfo);
+
 
 }
 else if(isUser == "N" || isUser == "n"){
+
 
     string wantRegister;
     Console.WriteLine("Do you want to register?");
@@ -27,7 +35,13 @@ else if(isUser == "N" || isUser == "n"){
     wantRegister = Console.ReadLine();
 
     if(wantRegister == "Y" || wantRegister == "y"){
-        LoginAndRegister.register();
+        
+        Console.WriteLine("Please enter your new user name: ");
+        userName = Console.ReadLine();
+        Console.WriteLine("Please enter your new password: ");
+        userPassword = Console.ReadLine();
+
+        LoginUI.register(userName,userPassword,userInfo);
     }
     else{
         Console.WriteLine("Press x to exit.");
@@ -39,23 +53,25 @@ else if(isUser == "N" || isUser == "n"){
 /// <summary>
 /// //////////////////////////
 /// </summary>
-public class LoginAndRegister{
+public class LoginUI{
 
     //login function
-    public static void login(string userName, string userPassword){
+    public static void login(string userName, string userPassword,Dictionary<string, string> userInfo){
 
-        if(userName == "haizhen" && userPassword == "000"){
+        if(userInfo.ContainsKey(userName) && userInfo[userName].Equals(userPassword)){
             Console.WriteLine("Login successful");
+        }
+        else{
+            Console.WriteLine("user name or password is incorrected");
         }
     }
 
-    //register function
 
-    public static void register(){
-        Console.WriteLine("Please enter your new user name: ");
-        Console.WriteLine("Please enter your new password: ");
+    //register function
+    public static void register(string userName, string userPassword, Dictionary<string, string> userInfo){
+
+        userInfo.Add(userName, userPassword);
+        Console.WriteLine("Register successful");
+        LoginUI.login(userName, userPassword, userInfo);
     }
 }
-
-
-
