@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ExpReimburse/1.0.0": {
+        "dependencies": {
+          "User": "1.0.0",
+          "UserDB": "1.0.0"
+        },
+        "runtime": {
+          "ExpReimburse.dll": {}
+        }
+      },
+      "User/1.0.0": {
+        "runtime": {
+          "User.dll": {}
+        }
+      },
+      "UserDB/1.0.0": {
+        "dependencies": {
+          "User": "1.0.0"
+        },
+        "runtime": {
+          "UserDB.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ExpReimburse/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "User/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserDB/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

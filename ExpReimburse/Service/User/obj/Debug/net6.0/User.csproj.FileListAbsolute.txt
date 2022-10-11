@@ -1,0 +1,12 @@
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\bin\Debug\net6.0\User.deps.json
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\bin\Debug\net6.0\User.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\bin\Debug\net6.0\User.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.csproj.AssemblyReference.cache
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.AssemblyInfoInputs.cache
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.AssemblyInfo.cs
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.csproj.CoreCompileInputs.cache
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\refint\User.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\User.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\User\obj\Debug\net6.0\ref\User.dll
