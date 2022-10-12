@@ -43,8 +43,10 @@ C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\obj\Debug\net
 C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\obj\Debug\net6.0\ExpReimburse.pdb
 C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\obj\Debug\net6.0\ExpReimburse.genruntimeconfig.cache
 C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\obj\Debug\net6.0\ref\ExpReimburse.dll
-C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\User.dll
-C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\User.pdb
 C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\obj\Debug\net6.0\ExpReimburse.csproj.CopyComplete
-C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\UserDB.dll
-C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\UserDB.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Database.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Model.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Service.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Model.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Service.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\UI\bin\Debug\net6.0\Database.pdb

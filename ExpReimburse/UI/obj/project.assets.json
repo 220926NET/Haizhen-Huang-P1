@@ -2,47 +2,63 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "User/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/User.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/User.dll": {}
-        }
-      },
-      "UserDB/1.0.0": {
+      "Database/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "User": "1.0.0"
+          "Model": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/UserDB.dll": {}
+          "bin/placeholder/Database.dll": {}
         },
         "runtime": {
-          "bin/placeholder/UserDB.dll": {}
+          "bin/placeholder/Database.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Model.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Service.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "User/1.0.0": {
+    "Database/1.0.0": {
       "type": "project",
-      "path": "../Service/User/User.csproj",
-      "msbuildProject": "../Service/User/User.csproj"
+      "path": "../Database/Database.csproj",
+      "msbuildProject": "../Database/Database.csproj"
     },
-    "UserDB/1.0.0": {
+    "Model/1.0.0": {
       "type": "project",
-      "path": "../Database/UserDB/UserDB.csproj",
-      "msbuildProject": "../Database/UserDB/UserDB.csproj"
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
+    },
+    "Service/1.0.0": {
+      "type": "project",
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "User >= 1.0.0",
-      "UserDB >= 1.0.0"
+      "Database >= 1.0.0",
+      "Model >= 1.0.0",
+      "Service >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -70,11 +86,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj": {
-              "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj"
+            "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj": {
+              "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj"
             },
-            "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj": {
-              "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj"
+            "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj"
+            },
+            "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj"
             }
           }
         }

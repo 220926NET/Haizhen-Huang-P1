@@ -1,10 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 
+
   <ItemGroup>
-    <ProjectReference Include="..\Service\User\User.csproj" />
-    <ProjectReference Include="..\Database\UserDB\UserDB.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\Service\Service.csproj" />
+    <ProjectReference Include="..\Database\Database.csproj" />
   </ItemGroup>
+
 
 
   <PropertyGroup>

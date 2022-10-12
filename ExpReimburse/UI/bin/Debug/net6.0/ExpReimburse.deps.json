@@ -8,24 +8,30 @@
     ".NETCoreApp,Version=v6.0": {
       "ExpReimburse/1.0.0": {
         "dependencies": {
-          "User": "1.0.0",
-          "UserDB": "1.0.0"
+          "Database": "1.0.0",
+          "Model": "1.0.0",
+          "Service": "1.0.0"
         },
         "runtime": {
           "ExpReimburse.dll": {}
         }
       },
-      "User/1.0.0": {
-        "runtime": {
-          "User.dll": {}
-        }
-      },
-      "UserDB/1.0.0": {
+      "Database/1.0.0": {
         "dependencies": {
-          "User": "1.0.0"
+          "Model": "1.0.0"
         },
         "runtime": {
-          "UserDB.dll": {}
+          "Database.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "runtime": {
+          "Model.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "runtime": {
+          "Service.dll": {}
         }
       }
     }
@@ -36,12 +42,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "User/1.0.0": {
+    "Database/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UserDB/1.0.0": {
+    "Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Service/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

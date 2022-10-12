@@ -4,14 +4,14 @@
     "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\UI\\ExpReimburse.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj": {
+    "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj",
-        "projectName": "UserDB",
-        "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj",
+        "projectUniqueName": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj",
+        "projectName": "Database",
+        "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj",
         "packagesPath": "C:\\Users\\Haizhen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\obj\\",
+        "outputPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Haizhen\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj": {
-                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj"
+              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj"
               }
             }
           }
@@ -61,14 +61,67 @@
         }
       }
     },
-    "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj": {
+    "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj",
-        "projectName": "User",
-        "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj",
+        "projectUniqueName": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj",
+        "projectName": "Model",
+        "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\Haizhen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\obj\\",
+        "outputPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Haizhen\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj",
+        "projectName": "Service",
+        "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Haizhen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Haizhen\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -136,11 +189,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj": {
-                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\UserDB\\UserDB.csproj"
+              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj": {
+                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Database\\Database.csproj"
               },
-              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj": {
-                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\User\\User.csproj"
+              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Model\\Model.csproj"
+              },
+              "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\Haizhen\\Desktop\\Revature\\Haizhen-Huang-P1\\ExpReimburse\\Service\\Service.csproj"
               }
             }
           }

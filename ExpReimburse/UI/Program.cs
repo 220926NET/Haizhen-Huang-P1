@@ -1,15 +1,11 @@
 ﻿//namespace
-using UserNameSp;
-using UserDBNameSp;
+using Model;
+using Database;
+
 
 
 // Create admin
-User admin = new User("Haizhen", "000", "Manager");
-
-
-UserDatabase userDBObj = new UserDatabase();
-userDBObj.AddUser(admin.userName, admin);
-
+var userDatabase = new UserDatabase();
 
 
 
@@ -28,7 +24,7 @@ while(true){
         string userPassword = Console.ReadLine();
 
         // Find User object from UserDB
-        User.login(userName, userPassword, userDBObj.UserDB);
+        User.login(userName, userPassword, userDatabase.UserDB);
         break;
         
     }
@@ -52,9 +48,9 @@ while(true){
             //New user will ask for create an account
             User newUser = new User(userName, userPassword, userRole);
             //Add new user to DB
-            userDBObj.AddUser(userName, newUser);
+            userDatabase.AddUser(userName, newUser);
             //Automatically perform Login
-            User.login(userName, userPassword, userDBObj.UserDB);
+            User.login(userName, userPassword, userDatabase.UserDB);
             break;
             
         }
