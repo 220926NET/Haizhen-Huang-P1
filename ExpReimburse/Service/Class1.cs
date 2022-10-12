@@ -10,13 +10,25 @@ public class ServiceClass{
 
         User returnUser = DatabaseClass.getUsers(userName, userPassword);
 
-        Console.WriteLine(returnUser.userName + "\n" + returnUser.userRole);
+        try{
+
+            Console.WriteLine("Login successfully");
+            Console.WriteLine(returnUser.userName + "\n" + returnUser.userRole);
+            
+            //NEED submit ticket function
+              
+        }catch(NullReferenceException e){
+
+            Console.WriteLine("Username or passwaor is NOT correct");
+        }
+        
         
     }
 
 
-    public static void register(){
+    public static void register(string userName, string userPassword, string userRole){
 
+        DatabaseClass.setUser(userName, userPassword, userRole);
 
     }
 }

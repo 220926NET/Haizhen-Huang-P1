@@ -44,6 +44,7 @@ while(true){
            
             
             //register function from service
+            ServiceClass.register(userName, userPassword, userRole);
             break;
             
         }
