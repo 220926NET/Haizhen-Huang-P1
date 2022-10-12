@@ -1,11 +1,6 @@
 ﻿//namespace
 using Model;
-using Database;
-
-
-
-// Create admin
-var userDatabase = new UserDatabase();
+using Service;
 
 
 
@@ -23,8 +18,9 @@ while(true){
         Console.WriteLine("Please enter your password: ");
         string userPassword = Console.ReadLine();
 
-        // Find User object from UserDB
-        User.login(userName, userPassword, userDatabase.UserDB);
+        
+        //login function service
+        ServiceClass.login(userName, userPassword);
         break;
         
     }
@@ -45,12 +41,9 @@ while(true){
             string userRole = Console.ReadLine();
 
 
-            //New user will ask for create an account
-            User newUser = new User(userName, userPassword, userRole);
-            //Add new user to DB
-            userDatabase.AddUser(userName, newUser);
-            //Automatically perform Login
-            User.login(userName, userPassword, userDatabase.UserDB);
+           
+            
+            //register function from service
             break;
             
         }
