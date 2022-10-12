@@ -8,7 +8,7 @@ public class ServiceClass{
     //login function
     public static void login(string userName, string userPassword){
 
-        User returnUser = DatabaseClass.getUsers(userName, userPassword);
+        User returnUser = DatabaseUserClass.getUsers(userName, userPassword);
 
         try{
 
@@ -28,7 +28,7 @@ public class ServiceClass{
 
     public static void register(string userName, string userPassword, string userRole){
 
-        DatabaseClass.setUser(userName, userPassword, userRole);
+        DatabaseUserClass.setUser(userName, userPassword, userRole);
 
     }
 }

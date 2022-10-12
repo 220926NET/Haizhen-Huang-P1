@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Database;
 
-public class DatabaseClass
+public class DatabaseUserClass
 {
 
 
@@ -31,8 +31,8 @@ public class DatabaseClass
                     return user;
                 }
                 
-            }
-
+            } 
+        }else{
             Console.WriteLine("Database table is empty");
         }
 
