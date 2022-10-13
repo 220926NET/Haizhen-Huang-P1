@@ -335,6 +335,15 @@
           }
         }
       },
+      "Portable.System.DateTimeOnly/6.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        }
+      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -796,6 +805,9 @@
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Portable.System.DateTimeOnly": "6.0.2"
+        },
         "compile": {
           "bin/placeholder/Model.dll": {}
         },
@@ -1325,6 +1337,24 @@
         "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Portable.System.DateTimeOnly/6.0.2": {
+      "sha512": "ER1F8j5ffASUpNtj5T8FoXf7K4T9+eetayrk+WJSpMWzn4dPJJKJj1cyvf4At2s8sHY3xCqDuE/d0ISpc+h3kg==",
+      "type": "package",
+      "path": "portable.system.datetimeonly/6.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net461/Portable.System.DateTimeOnly.dll",
+        "lib/net5.0/Portable.System.DateTimeOnly.dll",
+        "lib/net6.0/_._",
+        "lib/netstandard2.0/Portable.System.DateTimeOnly.dll",
+        "lib/netstandard2.1/Portable.System.DateTimeOnly.dll",
+        "portable.system.datetimeonly.6.0.2.nupkg.sha512",
+        "portable.system.datetimeonly.nuspec"
       ]
     },
     "System.Buffers/4.5.1": {
@@ -2616,6 +2646,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Model >= 1.0.0",
+      "Portable.System.DateTimeOnly >= 6.0.2",
       "Service >= 1.0.0"
     ]
   },
@@ -2662,6 +2693,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "Portable.System.DateTimeOnly": {
+            "target": "Package",
+            "version": "[6.0.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

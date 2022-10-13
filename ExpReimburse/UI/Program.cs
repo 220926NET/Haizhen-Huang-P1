@@ -3,7 +3,6 @@ using Model;
 using Service;
 
 
-
 //Login and register process
 while(true){
     Console.WriteLine("-------------------------------------------------");
