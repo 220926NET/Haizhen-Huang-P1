@@ -6,6 +6,7 @@ namespace Database;
 public class DatabaseUserClass
 {
 
+    //private SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=personalpwd97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
     public static User getUsers(string userName, string userPassword){
 
@@ -50,6 +51,20 @@ public class DatabaseUserClass
         SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{userName}', '{userPassword}', '{userRole}')", connection);
         int affectRows = command.ExecuteNonQuery();
         Console.WriteLine("Invoke setUser method successful");
+        Console.WriteLine("Affect rows: " + affectRows);
+
+        connection.Close();
+    }
+
+
+    public static void submitTicket(string userName, string description, double amountExp){
+
+        SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=personalpwd97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        connection.Open();
+        
+        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{userName}', '{description}', '{amountExp}', GETDATE())", connection);
+        int affectRows = command.ExecuteNonQuery();
+        Console.WriteLine("Invoke submit ticket method successful");
         Console.WriteLine("Affect rows: " + affectRows);
 
         connection.Close();
