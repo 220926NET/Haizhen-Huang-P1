@@ -8,7 +8,7 @@ public class ServiceClass{
     //login function
     public static void login(string userName, string userPassword){
 
-        User returnUser = DatabaseUserClass.getUsers(userName, userPassword);
+        User returnUser = DatabaseUser.getUsers(userName, userPassword);
 
         try{
 
@@ -29,7 +29,7 @@ public class ServiceClass{
     // register function
     public static void register(string userName, string userPassword, string userRole){
 
-        DatabaseUserClass.setUser(userName, userPassword, userRole);
+        DatabaseUser.setUser(userName, userPassword, userRole);
 
     }
 
@@ -51,7 +51,7 @@ public class ServiceClass{
             double amountExp = double.Parse(strAmountExp);
             
             // sumbit ticket to DB
-            DatabaseUserClass.submitTicket(userName, description, amountExp);
+            DatabaseTicket.submitTicket(userName, description, amountExp);
 
         }
         else if(ticketAction == "2"){
