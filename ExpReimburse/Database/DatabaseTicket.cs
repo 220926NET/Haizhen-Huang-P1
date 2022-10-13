@@ -11,7 +11,7 @@ public class DatabaseTicket{
 
         connection.Open();
         
-        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{userName}', '{description}', '{amountExp}', GETDATE())", connection);
+        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{userName}', '{description}', '{amountExp}', 0 ,GETDATE())", connection);
         int affectRows = command.ExecuteNonQuery();
         Console.WriteLine("Invoke submit ticket method successful");
         Console.WriteLine("Affect rows: " + affectRows);
@@ -24,7 +24,7 @@ public class DatabaseTicket{
         List<Ticket> TicketList = new List<Ticket>();
         connection.Open();
 
-        SqlCommand command = new SqlCommand($"SELECT * FROM TicketStorage WHERE User = '{userName}'");
+        SqlCommand command = new SqlCommand($"SELECT * FROM TicketStorage WHERE [User] = '{userName}'", connection);
         SqlDataReader reader = command.ExecuteReader();
 
         if(reader.HasRows){
@@ -33,14 +33,17 @@ public class DatabaseTicket{
 
                 string returnUserName = (string)reader["User"];
                 string returnDescription = (string)reader["Description"];
-                double returnAmountExp = (double)reader["AmountExp"];
+                double returnAmountExp = (double)reader["AmountExpense"];
 
                 Ticket ticket = new Ticket(returnUserName, returnDescription, returnAmountExp);
                 TicketList.Add(ticket);
 
             }
+        }else{
+            Console.WriteLine("table is empty");
         }
         
+        connection.Close();
         return TicketList;
     }
 }

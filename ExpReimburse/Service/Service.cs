@@ -56,7 +56,10 @@ public class ServiceClass{
         }
         else if(ticketAction == "2"){
 
-            
+            List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName);
+            foreach(Ticket ticket in returnTicketArr){
+                Console.WriteLine(ticket.userName + " " + ticket.description + " " + ticket.amountExp);
+            }
         }
         else{
             
