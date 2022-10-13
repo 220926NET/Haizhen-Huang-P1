@@ -27,3 +27,8 @@ C:\Users\kano\Desktop\revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\n
 C:\Users\kano\Desktop\revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Database.pdb
 C:\Users\kano\Desktop\revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Model.pdb
 C:\Users\kano\Desktop\revature\Haizhen-Huang-P1\ExpReimburse\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Database.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Model.dll
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Database.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\bin\Debug\net6.0\Model.pdb
+C:\Users\Haizhen\Desktop\Revature\Haizhen-Huang-P1\ExpReimburse\Service\obj\Debug\net6.0\Service.csproj.CopyComplete

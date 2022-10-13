@@ -33,6 +33,7 @@ public class DatabaseUserClass
                 
             } 
         }else{
+
             Console.WriteLine("Database table is empty");
         }
 
@@ -43,10 +44,10 @@ public class DatabaseUserClass
 
     public static void setUser(string userName, string userPassword, string userRole){
 
-        SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=personalpwd97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         connection.Open();
 
-        SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES({userName}, {userPassword}, {userRole})", connection);
+        SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{userName}', '{userPassword}', '{userRole}')", connection);
         int affectRows = command.ExecuteNonQuery();
         Console.WriteLine("Invoke setUser method successful");
         Console.WriteLine("Affect rows: " + affectRows);
