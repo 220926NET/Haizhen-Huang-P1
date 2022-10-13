@@ -3,17 +3,22 @@ namespace Model;
 public class Ticket{
 
     // Properties
+    public int ID;
     public string userName;
     public string description;
-    public double amountExp;
+    public double amountExpense;
+    public bool approved;
+    public DateTime date;
     
 
-    public Ticket(string userName, string description, double amountExp){
+    public Ticket(int ID, string userName, string description, double amountExpense, bool approved, DateTime date){
 
+        this.ID = ID;
         this.userName = userName;
         this.description = description;
-        this.amountExp = amountExp;
-        
+        this.amountExpense = amountExpense;
+        this.approved = approved;
+        this.date = date;
     }
 
 }

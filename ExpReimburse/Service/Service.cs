@@ -58,7 +58,7 @@ public class ServiceClass{
 
             List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName);
             foreach(Ticket ticket in returnTicketArr){
-                Console.WriteLine(ticket.userName + " " + ticket.description + " " + ticket.amountExp);
+                Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
             }
         }
         else{

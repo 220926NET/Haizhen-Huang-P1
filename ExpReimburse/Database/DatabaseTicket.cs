@@ -30,12 +30,16 @@ public class DatabaseTicket{
         if(reader.HasRows){
 
             while(reader.Read()){
-
+                int returnID = (int)reader["ID"];
                 string returnUserName = (string)reader["User"];
                 string returnDescription = (string)reader["Description"];
                 double returnAmountExp = (double)reader["AmountExpense"];
+                bool returnApproved = (bool)reader["Approved"];
+                DateTime returnDate = (DateTime)reader["date"];
 
-                Ticket ticket = new Ticket(returnUserName, returnDescription, returnAmountExp);
+                
+
+                Ticket ticket = new Ticket(returnID, returnUserName, returnDescription, returnAmountExp, returnApproved, returnDate);
                 TicketList.Add(ticket);
 
             }
