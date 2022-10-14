@@ -15,7 +15,7 @@ public class ServiceClass{
             Console.WriteLine("Login successfully : " + returnUser.userName + " " + returnUser.userRole);
             Console.WriteLine("---------------------------");
 
-            TicketAction(userName);
+            TicketAction(returnUser.userName, returnUser.userRole);
             
               
         }catch(NullReferenceException e){
@@ -35,11 +35,16 @@ public class ServiceClass{
 
 
     //After login successful
-    public static void TicketAction(string userName){
+    public static void TicketAction(string userName, string userRole){
         
         Console.WriteLine("What does you want to do next?");
         Console.WriteLine("[1]: Submit a Expense Reimbursement Ticket");
         Console.WriteLine("[2]: Review Expense Reimbursement Tickets history");
+        if(userRole == "tester"){
+
+            Console.WriteLine("[3]: To Approve Employee Expense Reimburse Tickets");
+        }
+
         string ticketAction = Console.ReadLine();
 
         if(ticketAction == "1"){
@@ -57,9 +62,14 @@ public class ServiceClass{
         else if(ticketAction == "2"){
 
             List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName);
+            
             foreach(Ticket ticket in returnTicketArr){
                 Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
             }
+        }
+        else if(ticketAction == "3" && userRole == "tester"){
+
+            DatabaseTicket.approveTicket();
         }
         else{
             
