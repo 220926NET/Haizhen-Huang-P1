@@ -4,8 +4,17 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 ## Project ignore file
-obj/
-bin/
+ExpReimburse/UI/obj/
+ExpReimburse/UI/bin/
+
+ExpReimburse/Service/obj/
+ExpReimburse/Service/bin/
+
+ExpReimburse/Model/obj/
+ExpReimburse/Model/bin/
+
+ExpReimburse/Database/obj/
+ExpReimburse/Datebase/bin/
 
 # User-specific files
 *.rsuser

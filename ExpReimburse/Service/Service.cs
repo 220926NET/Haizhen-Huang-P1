@@ -40,6 +40,7 @@ public class ServiceClass{
         Console.WriteLine("What does you want to do next?");
         Console.WriteLine("[1]: Submit a Expense Reimbursement Ticket");
         Console.WriteLine("[2]: Review Expense Reimbursement Tickets history");
+
         if(userRole == "tester"){
 
             Console.WriteLine("[3]: To Approve Employee Expense Reimburse Tickets");
@@ -69,7 +70,18 @@ public class ServiceClass{
         }
         else if(ticketAction == "3" && userRole == "tester"){
 
-            DatabaseTicket.approveTicket();
+            List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName, userRole);
+            
+            foreach(Ticket ticket in returnTicketArr){
+                Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
+            }
+
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("Please enter the Ticket ID you want to approve: ");
+            int ticketIDToApprove = int.Parse(Console.ReadLine());
+
+            DatabaseTicket.approveTicket(ticketIDToApprove);
+            
         }
         else{
             
