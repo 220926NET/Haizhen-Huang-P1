@@ -44,10 +44,18 @@ public class DatabaseUser
 
         connection.Open();
 
-        SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{userName}', '{userPassword}', '{userRole}')", connection);
-        int affectRows = command.ExecuteNonQuery();
-        Console.WriteLine("Invoke setUser method successful");
-        Console.WriteLine("Affect rows: " + affectRows);
+        try{
+
+            SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{userName}', '{userPassword}', '{userRole}')", connection);
+            int affectRows = command.ExecuteNonQuery();
+            Console.WriteLine("Affect rows: " + affectRows + "\n" + "User register successfully");
+            Console.WriteLine("---------------------------");
+
+        }catch(Microsoft.Data.SqlClient.SqlException e){
+
+            Console.WriteLine("User is already exist");
+        }
+        
 
         connection.Close();
     }

@@ -44,20 +44,27 @@ while(true){
             
             //register function from service
             ServiceClass.register(userName, userPassword, userRole);
+            //Automitically login
+            ServiceClass.login(userName, userPassword);
             break;
             
         }
         else if(wantRegister == "n" || wantRegister == "N"){
             //If don't want to create an account
+            Console.WriteLine("-------------------------------------------------");
             Console.WriteLine("Back to login page");
+            
         }
         else{
+
             Console.WriteLine("Please input your choose correctly");
         }
 
     }
     else{
+
         Console.WriteLine("Please input your choose correctly");
     }
+    
 }
 
