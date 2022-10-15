@@ -38,7 +38,8 @@ public class ServiceClass{
     public static void TicketAction(string userName, string userRole){
         
         while(true){
-
+            
+            Console.WriteLine("--------------------------");
             Console.WriteLine("What does you want to do next?");
             Console.WriteLine("[1]: Submit a Expense Reimbursement Ticket");
             Console.WriteLine("[2]: Review Expense Reimbursement Tickets history");
@@ -53,15 +54,22 @@ public class ServiceClass{
             string ticketAction = Console.ReadLine();
 
             if(ticketAction == "1"){
-
-                Console.WriteLine("Please provide a description about ticket: ");
-                string description = Console.ReadLine();
-                Console.WriteLine("Please enter amount of your expensive: ");
-                string strAmountExp = Console.ReadLine();
-                double amountExp = double.Parse(strAmountExp);
                 
-                // sumbit ticket to DB
-                DatabaseTicket.submitTicket(userName, description, amountExp);
+                try{
+
+                    Console.WriteLine("Please provide a description about ticket: ");
+                    string description = Console.ReadLine();
+                    Console.WriteLine("Please enter amount of your expensive: ");
+                    double amountExp = double.Parse(Console.ReadLine());
+
+                    // sumbit ticket to DB
+                    DatabaseTicket.submitTicket(userName, description, amountExp);
+
+                }catch(System.FormatException e){
+                    
+                    Console.WriteLine("Please enter A number for the amount of your expensive");
+                }
+                
 
             }
             else if(ticketAction == "2"){
@@ -74,18 +82,29 @@ public class ServiceClass{
                 }
             }
             else if(ticketAction == "3" && userRole == "manager"){
+                
+                List<int> ticketIDArr = new List<int>();
 
                 List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName, userRole);
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
                     Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
+                    ticketIDArr.Add(ticket.ID);
                 }
 
                 Console.WriteLine("-----------------------");
                 Console.WriteLine("Please enter the Ticket ID you want to approve: ");
                 int ticketIDToApprove = int.Parse(Console.ReadLine());
 
-                DatabaseTicket.approveTicket(ticketIDToApprove);
+                if(ticketIDArr.Contains(ticketIDToApprove)){
+
+                    DatabaseTicket.approveTicket(ticketIDToApprove);
+                }
+                else{
+                    
+                    Console.WriteLine("Please enter a VALID ticket ID");
+                }
+                
                 
             }
             else if(ticketAction == "x"){
