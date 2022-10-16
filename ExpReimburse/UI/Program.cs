@@ -36,23 +36,51 @@ while(true){
 
         if(wantRegister == "Y" || wantRegister == "y"){
             
+            
             Console.WriteLine("----------------------------------");
             Console.WriteLine("Please enter your new user name: ");
             string userName = Console.ReadLine();
             Console.WriteLine("----------------------------------");
             Console.WriteLine("Please enter your new password: ");
             string userPassword = Console.ReadLine();
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Are you manager or employee? ");
-            string userRole = Console.ReadLine();
-
-
-            User registerUser = new User(userName, userPassword, userRole);
             
-            //register function from service
-            ServiceClass.register(registerUser);
-            //Automitically login
-            ServiceClass.login(registerUser);
+            while(true){
+
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine("Are you manager or employee? ");
+                Console.WriteLine("Please enter [0] for manager | enter [1] for employee: ");
+                string userRole = Console.ReadLine();
+
+                if(userRole == "0"){
+
+                    userRole = "manager";
+                    User registerUser = new User(userName, userPassword, userRole);
+
+                    //register function from service
+                    ServiceClass.register(registerUser);
+                    //Automitically login
+                    ServiceClass.login(registerUser);
+                    break;
+                    
+                }
+                else if(userRole == "1"){
+
+                    userRole = "employee";
+                    User registerUser = new User(userName, userPassword, userRole);
+
+                    //register function from service
+                    ServiceClass.register(registerUser);
+                    //Automitically login
+                    ServiceClass.login(registerUser);
+                    break;
+                }
+                else{
+
+                    Console.WriteLine("Please input your choose correctly");
+                }
+            
+            }
+            
             break;
             
         }
