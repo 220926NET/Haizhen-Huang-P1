@@ -6,20 +6,21 @@ namespace Service;
 public class ServiceClass{
 
     //login function
-    public static void login(string userName, string userPassword){
+    public static void login(User loginUser){
 
-        User returnUser = DatabaseUser.getUsers(userName, userPassword);
+        User returnUser = DatabaseUser.getUsers(loginUser);
 
         try{
 
             Console.WriteLine("Login successfully : " + returnUser.userName + " " + returnUser.userRole);
             Console.WriteLine("---------------------------");
 
-            TicketAction(returnUser.userName, returnUser.userRole);
+            TicketAction(returnUser);
             
               
         }catch(NullReferenceException e){
 
+            Console.WriteLine("---------------------------");
             Console.WriteLine("Username or password is NOT correct");
         }
         
@@ -27,15 +28,16 @@ public class ServiceClass{
     }
 
     // register function
-    public static void register(string userName, string userPassword, string userRole){
+    public static void register(User registerUser){
 
-        DatabaseUser.setUser(userName, userPassword, userRole);
+        
+        DatabaseUser.setUser(registerUser);
 
     }
 
 
     //After login successful
-    public static void TicketAction(string userName, string userRole){
+    public static void TicketAction(User returnUser){
         
         while(true){
             
@@ -44,26 +46,27 @@ public class ServiceClass{
             Console.WriteLine("[1]: Submit a Expense Reimbursement Ticket");
             Console.WriteLine("[2]: Review Expense Reimbursement Tickets history");
 
-            if(userRole == "manager"){
+            if(returnUser.userRole == "manager"){
 
                 Console.WriteLine("[3]: To Approve Employee Expense Reimburse Tickets");
             }
 
             Console.WriteLine("[x]: Exit" + "\n--------------------------");
 
-            string ticketAction = Console.ReadLine();
+            string Action = Console.ReadLine();
 
-            if(ticketAction == "1"){
+            if(Action == "1"){
                 
                 try{
 
                     Console.WriteLine("Please provide a description about ticket: ");
                     string description = Console.ReadLine();
                     Console.WriteLine("Please enter amount of your expensive: ");
-                    double amountExp = double.Parse(Console.ReadLine());
+                    double amountExpense = double.Parse(Console.ReadLine());
 
                     // sumbit ticket to DB
-                    DatabaseTicket.submitTicket(userName, description, amountExp);
+                    Ticket ticketToSubmit = new Ticket(returnUser.userName, description, amountExpense);
+                    DatabaseTicket.submitTicket(ticketToSubmit);
 
                 }catch(System.FormatException e){
                     
@@ -72,20 +75,20 @@ public class ServiceClass{
                 
 
             }
-            else if(ticketAction == "2"){
+            else if(Action == "2"){
 
-                List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName);
+                List<Ticket> returnTicketArr = DatabaseTicket.getTicket(returnUser);
                 
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
                     Console.WriteLine(ticket.ID + "   " + ticket.userName + "   " + ticket.description + "    " + ticket.amountExpense + "    " + ticket.approved + "    " + ticket.date);
                 }
             }
-            else if(ticketAction == "3" && userRole == "manager"){
+            else if(Action == "3" && returnUser.userRole == "manager"){
                 
                 List<int> ticketIDArr = new List<int>();
-
-                List<Ticket> returnTicketArr = DatabaseTicket.getTicket(userName, userRole);
+                List<Ticket> returnTicketArr = DatabaseTicket.managerGetTicket(returnUser);
+                
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
                     Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
@@ -107,7 +110,7 @@ public class ServiceClass{
                 
                 
             }
-            else if(ticketAction == "x"){
+            else if(Action == "x"){
                 break;
             }
             else{

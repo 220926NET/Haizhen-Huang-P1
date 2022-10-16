@@ -9,6 +9,7 @@ public class User
     public string userPassword;
     public string userRole;
 
+    //For register
     public User(string userName, string userPassword, string userRole){
 
         this.userName = userName;
@@ -16,6 +17,13 @@ public class User
         this.userRole = userRole;
 
 
+    }
+
+    //For login
+    public User(string userName, string userPassword){
+
+        this.userName = userName;
+        this.userPassword = userPassword;
     }
 
 }

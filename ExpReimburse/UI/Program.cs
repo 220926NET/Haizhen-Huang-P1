@@ -20,9 +20,10 @@ while(true){
         Console.WriteLine("Please enter your password: ");
         string userPassword = Console.ReadLine();
 
+        User loginUser = new User(userName, userPassword);
         
         //login function service
-        ServiceClass.login(userName, userPassword);
+        ServiceClass.login(loginUser);
         break;
         
     }
@@ -46,12 +47,12 @@ while(true){
             string userRole = Console.ReadLine();
 
 
-           
+            User registerUser = new User(userName, userPassword, userRole);
             
             //register function from service
-            ServiceClass.register(userName, userPassword, userRole);
+            ServiceClass.register(registerUser);
             //Automitically login
-            ServiceClass.login(userName, userPassword);
+            ServiceClass.login(registerUser);
             break;
             
         }

@@ -8,7 +8,7 @@ public class DatabaseUser
 
     private static SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=personalpwd97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
-    public static User getUsers(string userName, string userPassword){
+    public static User getUsers(User loginUser){
 
         connection.Open();
 
@@ -19,7 +19,7 @@ public class DatabaseUser
 
             while(reader.Read()){
 
-                if((string)reader["UserName"] == userName && (string)reader["UserPassword"] == userPassword){
+                if((string)reader["UserName"] == loginUser.userName && (string)reader["UserPassword"] == loginUser.userPassword){
 
                     string returnUserName = (string)reader["UserName"];
                     string returnUserPassword = (string)reader["UserPassword"];
@@ -40,13 +40,13 @@ public class DatabaseUser
     }
 
 
-    public static void setUser(string userName, string userPassword, string userRole){
+    public static void setUser(User registerUser){
 
         connection.Open();
 
         try{
 
-            SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{userName}', '{userPassword}', '{userRole}')", connection);
+            SqlCommand command = new SqlCommand($"INSERT INTO UserStorage VALUES('{registerUser.userName}', '{registerUser.userPassword}', '{registerUser.userRole}')", connection);
             int affectRows = command.ExecuteNonQuery();
             Console.WriteLine("Affect rows: " + affectRows + "\n" + "User register successfully");
             Console.WriteLine("---------------------------");
