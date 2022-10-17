@@ -4,14 +4,20 @@ using Service;
 
 
 //Login and register process
+
+    Console.WriteLine("Welcome to Expense Reimbursement System!");
+
 while(true){
 
     Console.WriteLine("----------------------------------");
-    Console.WriteLine("Are you an existing user? ");
-    Console.WriteLine("Y/N: ");
-    string isUser = Console.ReadLine();
+    Console.WriteLine("Please enter a number for you action: ");
+    Console.WriteLine("[1]: Login into Expense Reimburse System");
+    Console.WriteLine("[2]: Register as a new user");
+    Console.WriteLine("[x]: Exit");
 
-    if(isUser == "Y" || isUser == "y"){
+    string userAction = Console.ReadLine();
+
+    if(userAction == "1"){
 
         Console.WriteLine("----------------------------------");
         Console.WriteLine("Please enter your user name: ");
@@ -27,78 +33,65 @@ while(true){
         break;
         
     }
-    else if(isUser == "N" || isUser == "n"){
-
+    else if(userAction == "2"){
+                        
         Console.WriteLine("----------------------------------");
-        Console.WriteLine("Do you want to register?");
-        Console.WriteLine("Y/N: ");
-        string wantRegister = Console.ReadLine();
+        Console.WriteLine("Please enter your new user name: ");
+        string userName = Console.ReadLine();
+        Console.WriteLine("----------------------------------");
+        Console.WriteLine("Please enter your new password: ");
+        string userPassword = Console.ReadLine();
+        
+        while(true){
 
-        if(wantRegister == "Y" || wantRegister == "y"){
-            
-            
             Console.WriteLine("----------------------------------");
-            Console.WriteLine("Please enter your new user name: ");
-            string userName = Console.ReadLine();
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Please enter your new password: ");
-            string userPassword = Console.ReadLine();
-            
-            while(true){
+            Console.WriteLine("Are you manager or employee? ");
+            Console.WriteLine("Enter [0] for manager");
+            Console.WriteLine("Enter [1] for manager");
+            string userRole = Console.ReadLine();
 
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine("Are you manager or employee? ");
-                Console.WriteLine("Please enter [0] for manager | enter [1] for employee: ");
-                string userRole = Console.ReadLine();
+            if(userRole == "0"){
 
-                if(userRole == "0"){
+                userRole = "manager";
+                User registerUser = new User(userName, userPassword, userRole);
 
-                    userRole = "manager";
-                    User registerUser = new User(userName, userPassword, userRole);
-
-                    //register function from service
-                    ServiceClass.register(registerUser);
-                    //Automitically login
-                    ServiceClass.login(registerUser);
-                    break;
-                    
-                }
-                else if(userRole == "1"){
-
-                    userRole = "employee";
-                    User registerUser = new User(userName, userPassword, userRole);
-
-                    //register function from service
-                    ServiceClass.register(registerUser);
-                    //Automitically login
-                    ServiceClass.login(registerUser);
-                    break;
-                }
-                else{
-
-                    Console.WriteLine("Please input your choose correctly");
-                }
-            
+                //register function from service
+                ServiceClass.register(registerUser);
+                //Automitically login
+                ServiceClass.login(registerUser);
+                break;
+                
             }
+            else if(userRole == "1"){
+
+                userRole = "employee";
+                User registerUser = new User(userName, userPassword, userRole);
+
+                //register function from service
+                ServiceClass.register(registerUser);
+                //Automitically login
+                ServiceClass.login(registerUser);
+                break;
+            }
+            else{
+
+                Console.WriteLine("Your input is invalid");
+            }
+            
             
             break;
             
         }
-        else if(wantRegister == "n" || wantRegister == "N"){
-            //If don't want to create an account
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Back to login page");
             
-        }
-        else{
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Please input your choose correctly");
-        }
+    }
+    else if(userAction == "x"){
 
+        break;
     }
     else{
+
         Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please input your choose correctly");
+        Console.WriteLine("Your input is invalid");
     }
     
 }
