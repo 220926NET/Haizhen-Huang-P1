@@ -5,7 +5,7 @@ using Service;
 
 //Login and register process
 
-    Console.WriteLine("Welcome to Expense Reimbursement System!");
+Console.WriteLine("Welcome to Expense Reimbursement System!");
 
 while(true){
 
@@ -20,7 +20,7 @@ while(true){
     if(userAction == "1"){
 
         Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your user name: ");
+        Console.WriteLine("Please enter your username: ");
         string userName = Console.ReadLine();
         Console.WriteLine("----------------------------------");
         Console.WriteLine("Please enter your password: ");
@@ -36,7 +36,7 @@ while(true){
     else if(userAction == "2"){
                         
         Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your new user name: ");
+        Console.WriteLine("Please enter your new username: ");
         string userName = Console.ReadLine();
         Console.WriteLine("----------------------------------");
         Console.WriteLine("Please enter your new password: ");
@@ -47,37 +47,24 @@ while(true){
             Console.WriteLine("----------------------------------");
             Console.WriteLine("Are you manager or employee? ");
             Console.WriteLine("Enter [0] for manager");
-            Console.WriteLine("Enter [1] for manager");
+            Console.WriteLine("Enter [1] for employee");
             string userRole = Console.ReadLine();
 
-            if(userRole == "0"){
+            if(userRole == "0" || userRole == "1"){
 
-                userRole = "manager";
+                userRole = userRole.Equals("0")? "manager":"employee";
                 User registerUser = new User(userName, userPassword, userRole);
 
-                //register function from service
                 ServiceClass.register(registerUser);
-                //Automitically login
+
                 ServiceClass.login(registerUser);
                 break;
-                
-            }
-            else if(userRole == "1"){
 
-                userRole = "employee";
-                User registerUser = new User(userName, userPassword, userRole);
-
-                //register function from service
-                ServiceClass.register(registerUser);
-                //Automitically login
-                ServiceClass.login(registerUser);
-                break;
             }
             else{
 
                 Console.WriteLine("Your input is invalid");
             }
-            
             
             break;
             
