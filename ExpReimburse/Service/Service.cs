@@ -48,7 +48,7 @@ public class ServiceClass{
 
             if(returnUser.userRole == "manager"){
 
-                Console.WriteLine("[3]: To Approve Employee Expense Reimburse Tickets");
+                Console.WriteLine("[3]: To Approve or Deny Employee Expense Reimburse Tickets");
             }
 
             Console.WriteLine("[x]: Exit" + "\n--------------------------");
@@ -80,8 +80,11 @@ public class ServiceClass{
                 List<Ticket> returnTicketArr = DatabaseTicket.getTicket(returnUser);
                 
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
+                
                 foreach(Ticket ticket in returnTicketArr){
-                    Console.WriteLine(ticket.ID + "   " + ticket.userName + "   " + ticket.description + "    " + ticket.amountExpense + "    " + ticket.approved + "    " + ticket.date);
+                    
+
+                    Console.WriteLine(ticket.ID + "   " + ticket.userName + "   " + ticket.description + "    " + ticket.amountExpense + "    " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + "    " + ticket.date);
                 }
             }
             else if(Action == "3" && returnUser.userRole == "manager"){
@@ -91,23 +94,38 @@ public class ServiceClass{
                 
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
-                    Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + ticket.approved + " " + ticket.date);
+                    Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + " " + ticket.date);
                     ticketIDArr.Add(ticket.ID);
                 }
 
-                Console.WriteLine("-----------------------");
-                Console.WriteLine("Please enter the Ticket ID you want to approve: ");
-                int ticketIDToApprove = int.Parse(Console.ReadLine());
 
-                if(ticketIDArr.Contains(ticketIDToApprove)){
+                Console.WriteLine("What do you want to do with pending ticket?");
+                Console.WriteLine("[1]:To approve a ticket");
+                Console.WriteLine("[2]:To deny a ticket");
+                string pendingTicketAction = Console.ReadLine();
 
-                    DatabaseTicket.approveTicket(ticketIDToApprove);
+                if(pendingTicketAction == "1" || pendingTicketAction == "2"){
+
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("Please enter the Ticket ID you want to " + ( (pendingTicketAction == "1")? "approve":"deny" ) );
+                    int ticketIDPending = int.Parse(Console.ReadLine());
+
+                    if(ticketIDArr.Contains(ticketIDPending)){
+
+                        DatabaseTicket.ApproveORDenyTicket(ticketIDPending, pendingTicketAction);
+                        ticketIDArr.Remove(ticketIDPending);
+                    }
+                    else{
+
+                        Console.WriteLine("Please enter a VALID ticket ID");
+                    }
+
                 }
                 else{
                     
-                    Console.WriteLine("Please enter a VALID ticket ID");
+                    Console.WriteLine("Please enter a VALID choice");
                 }
-                
+
                 
             }
             else if(Action == "x"){
@@ -115,7 +133,7 @@ public class ServiceClass{
             }
             else{
                 
-                Console.WriteLine("Please enter a vaild input");
+                Console.WriteLine("Please enter a VALID input");
             }
 
         }

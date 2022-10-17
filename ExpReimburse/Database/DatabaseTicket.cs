@@ -11,7 +11,7 @@ public class DatabaseTicket{
 
         connection.Open();
         
-        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}', '{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', 0 ,GETDATE())", connection);
+        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}', '{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', NULL ,GETDATE())", connection);
         int affectRows = command.ExecuteNonQuery();
         Console.WriteLine("Invoke submit ticket method successful");
         Console.WriteLine("Affect rows: " + affectRows);
@@ -34,12 +34,12 @@ public class DatabaseTicket{
                 string dbName = (string)reader["User"];
                 string dbDescription = (string)reader["Description"];
                 double dbAmountExp = (double)reader["AmountExpense"];
-                bool dbApproved = (bool)reader["Approved"];
+                bool? dbApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
                 DateTime dbDate = (DateTime)reader["date"];
 
                 
 
-                Ticket ticket = new Ticket(dbID, dbName, dbDescription, dbAmountExp, dbApproved, dbDate);
+                Ticket ticket = new Ticket(dbID, dbName, dbDescription, dbAmountExp, dbApprovalStatus, dbDate);
                 TicketList.Add(ticket);
 
             }
@@ -59,7 +59,7 @@ public class DatabaseTicket{
         List<Ticket> TicketList = new List<Ticket>();
         connection.Open();
 
-        SqlCommand command = new SqlCommand("SELECT * FROM TicketStorage WHERE Approved = 0", connection);
+        SqlCommand command = new SqlCommand("SELECT * FROM TicketStorage WHERE ApprovalStatus IS NULL", connection);
         SqlDataReader reader = command.ExecuteReader();
 
         if(reader.HasRows){
@@ -69,17 +69,15 @@ public class DatabaseTicket{
                 string returnUserName = (string)reader["User"];
                 string returnDescription = (string)reader["Description"];
                 double returnAmountExp = (double)reader["AmountExpense"];
-                bool returnApproved = (bool)reader["Approved"];
+                bool? returnApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
                 DateTime returnDate = (DateTime)reader["date"];
 
-                
-
-                Ticket ticket = new Ticket(returnID, returnUserName, returnDescription, returnAmountExp, returnApproved, returnDate);
+                Ticket ticket = new Ticket(returnID, returnUserName, returnDescription, returnAmountExp, returnApprovalStatus, returnDate);
                 TicketList.Add(ticket);
 
             }
         }else{
-            Console.WriteLine("table is empty");
+            Console.WriteLine("Table is empty");
         }
         
         connection.Close();
@@ -87,11 +85,13 @@ public class DatabaseTicket{
     }
 
 
-    public static void approveTicket(int ticketIDToApprove){
+    public static void ApproveORDenyTicket(int ticketID, string action){
+
+        string actionCmd = action.Equals("1")? "1":"0";
 
         connection.Open();
 
-        SqlCommand command = new SqlCommand($"UPDATE TicketStorage SET Approved = 1 WHERE ID = {ticketIDToApprove}", connection);
+        SqlCommand command = new SqlCommand($"UPDATE TicketStorage SET ApprovalStatus = {actionCmd} WHERE ID = {ticketID}", connection);
         int affectRows = command.ExecuteNonQuery();
         
         Console.Write("Effect row: " + affectRows);
