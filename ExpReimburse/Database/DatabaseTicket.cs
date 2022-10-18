@@ -11,7 +11,7 @@ public class DatabaseTicket{
 
         connection.Open();
         
-        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}', '{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', NULL ,GETDATE())", connection);
+        SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}','{ticketToSubmit.ticketType}','{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', NULL ,GETDATE())", connection);
         int affectRows = command.ExecuteNonQuery();
         Console.WriteLine("Invoke submit ticket method successful");
         Console.WriteLine("Affect rows: " + affectRows);
@@ -32,6 +32,7 @@ public class DatabaseTicket{
             while(reader.Read()){
                 int dbID = (int)reader["ID"];
                 string dbName = (string)reader["User"];
+                string dbType = (string)reader["TicketType"];
                 string dbDescription = (string)reader["Description"];
                 double dbAmountExp = (double)reader["AmountExpense"];
                 bool? dbApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
@@ -39,7 +40,7 @@ public class DatabaseTicket{
 
                 
 
-                Ticket ticket = new Ticket(dbID, dbName, dbDescription, dbAmountExp, dbApprovalStatus, dbDate);
+                Ticket ticket = new Ticket(dbID, dbName, dbType,dbDescription, dbAmountExp, dbApprovalStatus, dbDate);
                 TicketList.Add(ticket);
 
             }
@@ -67,12 +68,13 @@ public class DatabaseTicket{
             while(reader.Read()){
                 int returnID = (int)reader["ID"];
                 string returnUserName = (string)reader["User"];
+                string returnType = (string)reader["TicketType"];
                 string returnDescription = (string)reader["Description"];
                 double returnAmountExp = (double)reader["AmountExpense"];
                 bool? returnApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
                 DateTime returnDate = (DateTime)reader["date"];
 
-                Ticket ticket = new Ticket(returnID, returnUserName, returnDescription, returnAmountExp, returnApprovalStatus, returnDate);
+                Ticket ticket = new Ticket(returnID, returnUserName, returnType, returnDescription, returnAmountExp, returnApprovalStatus, returnDate);
                 TicketList.Add(ticket);
 
             }

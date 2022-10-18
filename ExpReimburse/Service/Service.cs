@@ -59,13 +59,29 @@ public class ServiceClass{
                 
                 try{
 
+                    Console.WriteLine("Pleas enter the type of ticket you want to submit: ");
+
+                    int ticketTypeIndex = 0;
+                    foreach(TicketType ticketType in Enum.GetValues(typeof(TicketType))){
+
+                        Console.WriteLine("["+ ticketTypeIndex + "]" + ticketType);
+                        ticketTypeIndex++;
+                    }
+
+                    ticketTypeIndex = int.Parse(Console.ReadLine());
+                    string sumbitTicketType = null;
+                    if(new[] {0,1,2,3,4,5}.Contains(ticketTypeIndex)) {
+
+                        sumbitTicketType = Enum.GetName(typeof(TicketType), ticketTypeIndex).ToString();
+                    }
+
                     Console.WriteLine("Please provide a description about ticket: ");
                     string description = Console.ReadLine();
                     Console.WriteLine("Please enter amount of your expensive: ");
                     double amountExpense = double.Parse(Console.ReadLine());
 
                     // sumbit ticket to DB
-                    Ticket ticketToSubmit = new Ticket(returnUser.userName, description, amountExpense);
+                    Ticket ticketToSubmit = new Ticket(returnUser.userName, sumbitTicketType, description, amountExpense);
                     DatabaseTicket.submitTicket(ticketToSubmit);
 
                 }catch(System.FormatException e){
@@ -79,12 +95,12 @@ public class ServiceClass{
 
                 List<Ticket> returnTicketArr = DatabaseTicket.getTicket(returnUser);
                 
-                Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
+                Console.WriteLine("ID| User | Type  | Description | AmountExpense  | AprovalStatus | Date");
                 
                 foreach(Ticket ticket in returnTicketArr){
                     
 
-                    Console.WriteLine(ticket.ID + "   " + ticket.userName + "   " + ticket.description + "    " + ticket.amountExpense + "    " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + "    " + ticket.date);
+                    Console.WriteLine(ticket.ID + "   " + ticket.userName + "   "+ ticket.ticketType +"    " + ticket.description + "    " + ticket.amountExpense + "    " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + "    " + ticket.date);
                 }
             }
             else if(Action == "3" && returnUser.userRole == "manager"){
@@ -94,7 +110,7 @@ public class ServiceClass{
                 
                 Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
-                    Console.WriteLine(ticket.ID + " " + ticket.userName + " " + ticket.description + " " + ticket.amountExpense + " " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + " " + ticket.date);
+                    Console.WriteLine(ticket.ID + " " + ticket.userName + " " +ticket.ticketType + "   "+ ticket.description + " " + ticket.amountExpense + " " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + " " + ticket.date);
                     ticketIDArr.Add(ticket.ID);
                 }
 

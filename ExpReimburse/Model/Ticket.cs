@@ -6,16 +6,18 @@ public class Ticket{
     public int ID;
     public string userName;
     public string description;
+    public string ticketType;
     public double amountExpense;
     public bool? approvalStatus;
     public DateTime date;
     
 
     // Ticket for DB
-    public Ticket(int ID, string userName, string description, double amountExpense, bool? approvalStatus, DateTime date){
+    public Ticket(int ID, string userName, string TicketType, string description,double amountExpense, bool? approvalStatus, DateTime date){
 
         this.ID = ID;
         this.userName = userName;
+        this.ticketType = TicketType;
         this.description = description;
         this.amountExpense = amountExpense;
         this.approvalStatus = approvalStatus;
@@ -23,9 +25,10 @@ public class Ticket{
     }
 
     // Ticket for submission
-    public Ticket(string userName, string description, double amountExpense){
+    public Ticket(string userName, string TicketType, string description, double amountExpense){
 
         this.userName = userName;
+        this.ticketType = TicketType;
         this.description = description;
         this.amountExpense = amountExpense;
     }
@@ -45,5 +48,14 @@ public class Ticket{
             return "Denied";
         }
     }
-
 }
+
+    public enum TicketType{
+
+        Travel,
+        Food,
+        Meidical,
+        Accommodation,
+        Supplies,
+        Other
+    }
