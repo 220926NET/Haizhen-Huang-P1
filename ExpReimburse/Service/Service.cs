@@ -59,21 +59,35 @@ public class ServiceClass{
                 
                 try{
 
-                    Console.WriteLine("Pleas enter the type of ticket you want to submit: ");
+                
+                    string sumbitTicketType = null;
 
-                    int ticketTypeIndex = 0;
-                    foreach(TicketType ticketType in Enum.GetValues(typeof(TicketType))){
+                    while(true){
+
+                        Console.WriteLine("Pleas enter the type of ticket you want to submit: ");
+
+                        int ticketTypeIndex = 0;
+                        foreach(TicketType ticketType in Enum.GetValues(typeof(TicketType))){
 
                         Console.WriteLine("["+ ticketTypeIndex + "]" + ticketType);
                         ticketTypeIndex++;
-                    }
+                        }
 
-                    ticketTypeIndex = int.Parse(Console.ReadLine());
-                    string sumbitTicketType = null;
-                    if(new[] {0,1,2,3,4,5}.Contains(ticketTypeIndex)) {
+                        ticketTypeIndex = int.Parse(Console.ReadLine());
 
-                        sumbitTicketType = Enum.GetName(typeof(TicketType), ticketTypeIndex).ToString();
+                        if(new[] {0,1,2,3,4,5}.Contains(ticketTypeIndex)) {
+
+                            sumbitTicketType = Enum.GetName(typeof(TicketType), ticketTypeIndex).ToString();
+                            break;
+                        }
+                        else{
+                            
+                            Console.WriteLine("--------------------------");
+                            Console.WriteLine("Please enter a VALID choice");
+                        }
+
                     }
+                    
 
                     Console.WriteLine("Please provide a description about ticket: ");
                     string description = Console.ReadLine();
