@@ -1,13 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace Model;
 
 public class Ticket{
 
     // Properties
     public int ID;
-    public string userName;
-    public string description;
-    public string ticketType;
-    public double amountExpense;
+    public string userName{get;set;}
+    public string description{get;set;}
+    public string ticketType{get;set;}
+    public double amountExpense{get;set;}
     public bool? approvalStatus;
     public DateTime date;
     
@@ -25,6 +28,7 @@ public class Ticket{
     }
 
     // Ticket for submission
+    [JsonConstructor]
     public Ticket(string userName, string TicketType, string description, double amountExpense){
 
         this.userName = userName;

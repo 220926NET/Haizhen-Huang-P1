@@ -7,16 +7,25 @@ public class DatabaseTicket{
 
     private static SqlConnection connection = new SqlConnection("Server=tcp:221010-938.database.windows.net,1433;Initial Catalog=ExpenseReimbursement-P1;Persist Security Info=False;User ID=flashcard-admin;Password=personalpwd97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
-    public static void submitTicket(Ticket ticketToSubmit){
+    public static async Task<Ticket> submitTicket(Ticket ticketToSubmit){
 
         connection.Open();
         
         SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}','{ticketToSubmit.ticketType}','{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', NULL ,GETDATE())", connection);
-        int affectRows = command.ExecuteNonQuery();
-        Console.WriteLine("Invoke submit ticket method successful");
-        Console.WriteLine("Affect rows: " + affectRows);
+        int affectRows = await command.ExecuteNonQueryAsync();
+        if(affectRows == 1){
 
-        connection.Close();
+            connection.Close();
+            return ticketToSubmit;
+            
+        }
+        else{
+
+            connection.Close();
+            return null;
+        }
+
+        
     }
 
     public static List<Ticket> getTicket(User returnUser){

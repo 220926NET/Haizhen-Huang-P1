@@ -39,6 +39,13 @@ public  class ServiceClass{
 
     }
 
+    // submit ticket function
+    public async Task<Ticket> sumbitTicket(Ticket ticket){
+
+        Ticket returnTicket = await DatabaseTicket.submitTicket(ticket);
+        return returnTicket;
+    }
+
 
     //After login successful
     public static void TicketAction(User returnUser){

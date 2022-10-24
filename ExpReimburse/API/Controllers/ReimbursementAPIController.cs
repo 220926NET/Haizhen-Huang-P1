@@ -68,5 +68,29 @@ namespace API.Controllers
 
             return null;
        }
+
+
+       [HttpPost("submit")]
+        public async Task<ActionResult<Ticket>> SumbitTicket(Ticket ticket)
+        {
+            if(!ModelState.IsValid){
+                UnprocessableEntity(ticket);
+            }
+            else{
+
+                Ticket returnticket = await _service.sumbitTicket(ticket);
+                if(returnticket == null){
+                    return BadRequest(ticket);
+                }
+                else{
+                    return Created("submit/ticket", returnticket);
+                }
+            }
+            
+            return null;        
+        
+        }
     }
+
+    
 }
