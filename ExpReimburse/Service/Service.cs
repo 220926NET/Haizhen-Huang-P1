@@ -3,35 +3,39 @@ using Database;
 
 namespace Service;
 
-public class ServiceClass{
+public  class ServiceClass{
+
+
 
     //login function
-    public static void login(User loginUser){
+    public async Task<User> login(User loginUser){
 
-        User returnUser = DatabaseUser.getUsers(loginUser);
+        User? returnUser = await DatabaseUser.getUsers(loginUser);
+        return returnUser;
 
-        try{
+        // try{
 
-            Console.WriteLine("Login successfully : " + returnUser.userName + " " + returnUser.userRole);
-            Console.WriteLine("---------------------------");
+        //     Console.WriteLine("Login successfully : " + returnUser.userName + " " + returnUser.userRole);
+        //     Console.WriteLine("---------------------------");
 
-            TicketAction(returnUser);
+        //     TicketAction(returnUser);
             
               
-        }catch(NullReferenceException e){
+        // }catch(NullReferenceException e){
 
-            Console.WriteLine("---------------------------");
-            Console.WriteLine("Username or password is NOT correct");
-        }
+        //     Console.WriteLine("---------------------------");
+        //     Console.WriteLine("Username or password is NOT correct");
+        // }
         
         
     }
 
     // register function
-    public static void register(User registerUser){
+    public async Task<User> register(User registerUser){
 
         
-        DatabaseUser.setUser(registerUser);
+        User? returnUser = await DatabaseUser.setUser(registerUser);
+        return returnUser;
 
     }
 
@@ -122,13 +126,13 @@ public class ServiceClass{
                 List<int> ticketIDArr = new List<int>();
                 List<Ticket> returnTicketArr = DatabaseTicket.managerGetTicket(returnUser);
                 
-                Console.WriteLine("ID| User | Description | AmountExpense  | AprovalStatus | Date");
+                Console.WriteLine("ID| User | Type | Description | AmountExpense  | AprovalStatus | Date");
                 foreach(Ticket ticket in returnTicketArr){
                     Console.WriteLine(ticket.ID + " " + ticket.userName + " " +ticket.ticketType + "   "+ ticket.description + " " + ticket.amountExpense + " " + Ticket.ApprovalStatusToString(ticket.approvalStatus) + " " + ticket.date);
                     ticketIDArr.Add(ticket.ID);
                 }
 
-
+                Console.WriteLine("--------------------------");
                 Console.WriteLine("What do you want to do with pending ticket?");
                 Console.WriteLine("[1]:To approve a ticket");
                 Console.WriteLine("[2]:To deny a ticket");

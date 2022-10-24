@@ -1,15 +1,25 @@
-﻿namespace Model;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace Model;
+
 
 public class User
 {
 
     //Users information variables
    
-    public string userName;
-    public string userPassword;
-    public string userRole;
+
+    public string userName{get; set;}
+    public string userPassword{get; set;}
+    public string userRole{get; set;}
 
     //For register
+    
+
+
+  
+    [JsonConstructor]
     public User(string userName, string userPassword, string userRole){
 
         this.userName = userName;
@@ -20,6 +30,7 @@ public class User
     }
 
     //For login
+    
     public User(string userName, string userPassword){
 
         this.userName = userName;
