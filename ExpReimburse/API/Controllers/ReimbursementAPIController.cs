@@ -141,7 +141,7 @@ namespace API.Controllers
         
 
         [HttpPut("process/ticket")]
-        public ActionResult<Ticket> ProcessTicketPending(User user,int ticketID, bool action){
+        public async Task<ActionResult<Ticket>> ProcessTicketPending(User user,int ticketID, bool action){
 
             if(!ModelState.IsValid){
 
@@ -149,7 +149,7 @@ namespace API.Controllers
             }
             else{
 
-                Ticket returnTicket =  _service.ProcessTicket(ticketID, action);
+                Ticket returnTicket =  await _service.ProcessTicket(user, ticketID, action);
                 if(returnTicket != null){
 
 
@@ -158,7 +158,7 @@ namespace API.Controllers
                 }
                 else{
 
-                    return NotFound();
+                    return NotFound("Employee cannot process request");
                 }
 
             }

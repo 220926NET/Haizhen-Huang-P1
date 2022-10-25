@@ -60,12 +60,19 @@ public  class ServiceClass{
 
 
     // Process pending ticket
-    public Ticket ProcessTicket(int ticketID, bool action){
+    public async Task<Ticket> ProcessTicket(User user, int ticketID, bool action){
         
-        //User loginUser = DatabaseUser.getUsers(use)
+        User loginUser = await DatabaseUser.getUsers(user);
+        if(loginUser != null && loginUser.userRole == "manager"){
 
-        Ticket returnTicket = DatabaseTicket.ProcessPendingTicket(ticketID, action);
-        return returnTicket;
+            Ticket returnTicket = DatabaseTicket.ProcessPendingTicket(ticketID, action);
+            return returnTicket;
+        }
+        else{
+            return null;
+        }
+
+        
     }
 
 
