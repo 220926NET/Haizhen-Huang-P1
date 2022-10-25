@@ -36,7 +36,7 @@ namespace API.Controllers
             User returnUser = await  _service.register(user);
             if(returnUser == null){
                 
-                return BadRequest("Invalid Input: Username is already taken");
+                return BadRequest("Invalid Input: Username is already taken Or missing neccessray information");
             }else{
                 
                 return Created("", "Register successfully");
@@ -104,7 +104,7 @@ namespace API.Controllers
                 List<Ticket> returnTicket = await _service.viewTicket(user);
                 if(returnTicket == null){
 
-                    return NoContent();
+                    return BadRequest("Invalid login information");
                 }
                 else{
                     Response.Headers.Add("current-User", user.userName);
