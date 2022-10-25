@@ -12,65 +12,88 @@ public class DatabaseTicket{
         connection.Open();
         
         SqlCommand command = new SqlCommand($"INSERT into TicketStorage VALUES('{ticketToSubmit.userName}','{ticketToSubmit.ticketType}','{ticketToSubmit.description}', '{ticketToSubmit.amountExpense}', NULL ,GETDATE())", connection);
-        int affectRows = await command.ExecuteNonQueryAsync();
-        if(affectRows == 1){
+
+        try{
+
+            int affectRows = await command.ExecuteNonQueryAsync();
+            if(affectRows == 1){
+
+                connection.Close();
+                return ticketToSubmit;
+            
+            }
+            else{
+
+                connection.Close();
+                return null;
+            }
+
+
+        }catch(Microsoft.Data.SqlClient.SqlException e){
 
             connection.Close();
-            return ticketToSubmit;
+            return null;
+
+        }
+        
+
+        
+    }
+
+    public static async Task<List<Ticket>> getTicket(User returnUser){
+
+        //retrive User data from DB
+        User user = await DatabaseUser.getUsers(returnUser);
+
+        if(user != null){
+
+            List<Ticket> TicketList = new List<Ticket>();
+            connection.Open();
+
+            SqlCommand command = new SqlCommand($"SELECT * FROM TicketStorage WHERE [User] = '{returnUser.userName}'", connection);
+            SqlDataReader reader = await command.ExecuteReaderAsync();
+
+            if(reader.HasRows){
+
+                while(reader.Read()){
+                    int dbID = (int)reader["ID"];
+                    string dbName = (string)reader["User"];
+                    string dbType = (string)reader["TicketType"];
+                    string dbDescription = (string)reader["Description"];
+                    double dbAmountExp = (double)reader["AmountExpense"];
+                    bool? dbApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
+                    DateTime dbDate = (DateTime)reader["date"];
+
+                    
+
+                    Ticket ticket = new Ticket(dbID, dbName, dbType,dbDescription, dbAmountExp, dbApprovalStatus, dbDate);
+                    TicketList.Add(ticket);
+
+                }
+            }
             
+            connection.Close();
+            return TicketList;
+
         }
         else{
 
-            connection.Close();
             return null;
         }
 
         
     }
 
-    public static List<Ticket> getTicket(User returnUser){
-
-        List<Ticket> TicketList = new List<Ticket>();
-        connection.Open();
-
-        SqlCommand command = new SqlCommand($"SELECT * FROM TicketStorage WHERE [User] = '{returnUser.userName}'", connection);
-        SqlDataReader reader = command.ExecuteReader();
-
-        if(reader.HasRows){
-
-            while(reader.Read()){
-                int dbID = (int)reader["ID"];
-                string dbName = (string)reader["User"];
-                string dbType = (string)reader["TicketType"];
-                string dbDescription = (string)reader["Description"];
-                double dbAmountExp = (double)reader["AmountExpense"];
-                bool? dbApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
-                DateTime dbDate = (DateTime)reader["date"];
-
-                
-
-                Ticket ticket = new Ticket(dbID, dbName, dbType,dbDescription, dbAmountExp, dbApprovalStatus, dbDate);
-                TicketList.Add(ticket);
-
-            }
-        }else{
-            Console.WriteLine("table is empty");
-        }
-        
-        connection.Close();
-        return TicketList;
-    }
-
 
     // Overload getTicket method for Manager
     // return waiting approve tickets
-        public static List<Ticket> managerGetTicket(User returnUser){
+    public static async Task<List<Ticket>> ViewPendingTicket(){
 
         List<Ticket> TicketList = new List<Ticket>();
         connection.Open();
 
         SqlCommand command = new SqlCommand("SELECT * FROM TicketStorage WHERE ApprovalStatus IS NULL", connection);
-        SqlDataReader reader = command.ExecuteReader();
+        SqlDataReader reader = await command.ExecuteReaderAsync();
 
         if(reader.HasRows){
 
@@ -96,18 +119,55 @@ public class DatabaseTicket{
     }
 
 
-    public static void ApproveORDenyTicket(int ticketID, string action){
+    public static Ticket ProcessPendingTicket(int ticketID, bool action){
 
-        string actionCmd = action.Equals("1")? "1":"0";
+        string actionCmd = action? "1":"0";
 
         connection.Open();
 
         SqlCommand command = new SqlCommand($"UPDATE TicketStorage SET ApprovalStatus = {actionCmd} WHERE ID = {ticketID}", connection);
         int affectRows = command.ExecuteNonQuery();
-        
-        Console.Write("Effect row: " + affectRows);
-        connection.Close();
+
+        if(affectRows == 1){
+            connection.Close();
+            return RetriveProcessedTicket(ticketID);
+        }
+        else{
+            connection.Close();
+            return null;
+
+        }
     
     }
+
+    public static Ticket RetriveProcessedTicket(int ticketID){
+
+        connection.Open();
+        SqlCommand command2 = new SqlCommand($"SELECT * FROM TicketStorage WHERE ID = {ticketID}", connection);
+        SqlDataReader reader = command2.ExecuteReader();
+        Ticket ticket = null;
+
+        if(reader.HasRows){
+            while(reader.Read()){
+
+                int returnID = (int)reader["ID"];
+                string returnUserName = (string)reader["User"];
+                string returnType = (string)reader["TicketType"];
+                string returnDescription = (string)reader["Description"];
+                double returnAmountExp = (double)reader["AmountExpense"];
+                bool? returnApprovalStatus = Convert.IsDBNull(reader["ApprovalStatus"])? null: (bool?)reader["ApprovalStatus"];
+                DateTime returnDate = (DateTime)reader["date"];
+
+                ticket = new Ticket(returnID, returnUserName, returnType, returnDescription, returnAmountExp, returnApprovalStatus, returnDate);
+                connection.Close();
+                return ticket; 
+            }
+            
+                
+        }
+        return ticket;
+    }
+
+
     
 }

@@ -1,85 +1,18 @@
 ﻿//namespace
 using Model;
 using Service;
+using Database;
 
 
 //Login and register process
 
 Console.WriteLine("Welcome to Expense Reimbursement System!");
 
-while(true){
+int ticketID = 4;
+bool action = false;
 
-    Console.WriteLine("----------------------------------");
-    Console.WriteLine("Please enter a number for you action: ");
-    Console.WriteLine("[1]: Login into Expense Reimburse System");
-    Console.WriteLine("[2]: Register as a new user");
-    Console.WriteLine("[x]: Exit");
+Ticket ticket = DatabaseTicket.ProcessPendingTicket(ticketID,action);
+Console.WriteLine(ticket.userName+"\n"+ticket.approvalStatus+"\n"+ticket.amountExpense);
 
-    string userAction = Console.ReadLine();
-
-    if(userAction == "1"){
-
-        Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your username: ");
-        string userName = Console.ReadLine();
-        Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your password: ");
-        string userPassword = Console.ReadLine();
-
-        User loginUser = new User(userName, userPassword);
-        
-        //login function service
-        ServiceClass.login(loginUser);
-        break;
-        
-    }
-    else if(userAction == "2"){
-                        
-        Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your new username: ");
-        string userName = Console.ReadLine();
-        Console.WriteLine("----------------------------------");
-        Console.WriteLine("Please enter your new password: ");
-        string userPassword = Console.ReadLine();
-        
-        while(true){
-
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Are you manager or employee? ");
-            Console.WriteLine("Enter [0] for manager");
-            Console.WriteLine("Enter [1] for employee");
-            string userRole = Console.ReadLine();
-
-            if(userRole == "0" || userRole == "1"){
-
-                userRole = userRole.Equals("0")? "manager":"employee";
-                User registerUser = new User(userName, userPassword, userRole);
-
-                ServiceClass.register(registerUser);
-
-                ServiceClass.login(registerUser);
-                break;
-
-            }
-            else{
-
-                Console.WriteLine("Your input is invalid");
-            }
-            
-            break;
-            
-        }
-            
-    }
-    else if(userAction == "x"){
-
-        break;
-    }
-    else{
-
-        Console.WriteLine("----------------------------------");
-        Console.WriteLine("Your input is invalid");
-    }
-    
-}
-
+Ticket ticket1 = ServiceClass.ProcessTicket(ticketID, action);
+Console.WriteLine(ticket1.userName+"\n"+ticket1.approvalStatus+"\n"+ticket1.amountExpense);

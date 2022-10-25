@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ExpReimburse/1.0.0": {
         "dependencies": {
+          "Database": "1.0.0",
           "Model": "1.0.0",
           "Portable.System.DateTimeOnly": "6.0.2",
           "Service": "1.0.0"

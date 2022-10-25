@@ -6,13 +6,13 @@ namespace Model;
 public class Ticket{
 
     // Properties
-    public int ID;
+    public int ID{get;}
     public string userName{get;set;}
     public string description{get;set;}
     public string ticketType{get;set;}
     public double amountExpense{get;set;}
-    public bool? approvalStatus;
-    public DateTime date;
+    public bool? approvalStatus{get;set;}
+    public DateTime date{get;}
     
 
     // Ticket for DB

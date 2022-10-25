@@ -12,7 +12,7 @@ public class User
 
     public string userName{get; set;}
     public string userPassword{get; set;}
-    public string userRole{get; set;} = null;
+    public string? userRole{get;set;} = null;
 
     //For register
     

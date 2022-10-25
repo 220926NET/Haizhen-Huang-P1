@@ -22,6 +22,7 @@ namespace API.Controllers
             _service = service;
        }
 
+
        [HttpPost("register")]
        public async Task<ActionResult<User>> RegisterUser(User user)
        {
@@ -35,10 +36,10 @@ namespace API.Controllers
             User returnUser = await  _service.register(user);
             if(returnUser == null){
                 
-                return BadRequest(user);
+                return BadRequest("Invalid Input: Username is already taken");
             }else{
                 
-                return Created("register/user", returnUser);
+                return Created("", "Register successfully");
             }
             
         }
@@ -58,11 +59,12 @@ namespace API.Controllers
                 User returnUser = await _service.login(user);
                 if(returnUser == null){
                     
-                    return BadRequest(user);
+                    return BadRequest("Invalid Credential");
                 }
                 else{
                     
-                    return Created("login/user", returnUser);
+                    Response.Headers.Add("current-User",user.userName);
+                    return Created("", returnUser);
                 }
             }
 
@@ -80,16 +82,92 @@ namespace API.Controllers
 
                 Ticket returnticket = await _service.sumbitTicket(ticket);
                 if(returnticket == null){
-                    return BadRequest(ticket);
+                    return BadRequest("Submission failed: Missing neccessary information");
                 }
                 else{
-                    return Created("submit/ticket", returnticket);
+                    return Created("", returnticket);
                 }
             }
             
             return null;        
         
         }
+
+        [HttpPost("view/ticket/history")]
+        public async Task<ActionResult<Ticket>> viewTicketHistory(User user){
+
+            if(!ModelState.IsValid){
+                UnprocessableEntity(user);
+            }
+            else{
+
+                List<Ticket> returnTicket = await _service.viewTicket(user);
+                if(returnTicket == null){
+
+                    return NoContent();
+                }
+                else{
+                    Response.Headers.Add("current-User", user.userName);
+                    return Created("view/ticketHistory", returnTicket);
+                }
+                
+            }
+            return null;
+
+        }
+
+
+        [HttpGet("view/ticket/pending")]
+        public async Task<ActionResult<Ticket>> ViewTicketPending(){
+
+            if(!ModelState.IsValid){
+
+                UnprocessableEntity();
+            }
+            else{
+
+                List<Ticket> returnTicket = await _service.viewTicket();
+                if(returnTicket == null){
+
+                    return NotFound();
+                }
+                else{
+
+                    return Ok(returnTicket);
+                }
+            }
+            return null;
+        }
+        
+
+        [HttpPut("process/ticket")]
+        public ActionResult<Ticket> ProcessTicketPending(User user,int ticketID, bool action){
+
+            if(!ModelState.IsValid){
+
+                UnprocessableEntity();
+            }
+            else{
+
+                Ticket returnTicket =  _service.ProcessTicket(ticketID, action);
+                if(returnTicket != null){
+
+
+                    Response.Headers.Add("current-User", user.userName);
+                    return Accepted("",returnTicket);
+                }
+                else{
+
+                    return NotFound();
+                }
+
+            }
+            
+            return NotFound();
+            
+        }
+
+        
     }
 
     
