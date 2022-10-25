@@ -117,8 +117,8 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("view/ticket/pending")]
-        public async Task<ActionResult<Ticket>> ViewTicketPending(){
+        [HttpPost("view/ticket/pending")]
+        public async Task<ActionResult<Ticket>> ViewTicketPending(User user){
 
             if(!ModelState.IsValid){
 
@@ -126,10 +126,10 @@ namespace API.Controllers
             }
             else{
 
-                List<Ticket> returnTicket = await _service.viewTicket();
+                List<Ticket> returnTicket = await _service.viewPendingTicket(user);
                 if(returnTicket == null){
 
-                    return NotFound();
+                    return NotFound("Employee cannot process request Or Login information incorrect");
                 }
                 else{
 
@@ -158,7 +158,7 @@ namespace API.Controllers
                 }
                 else{
 
-                    return NotFound("Employee cannot process request");
+                    return NotFound("Employee cannot process request Or Login information incorrect");
                 }
 
             }
