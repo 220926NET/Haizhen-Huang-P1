@@ -22,13 +22,13 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: 
-        ExpReimburse/API
+        cd ExpReimburse/API
         dotnet restore
     - name: Build
       run: 
-        ExpReimburse/API
+        cd ExpReimburse/API
         dotnet build --no-restore
     - name: Test
       run: 
-        ExpReimburse/API
+        cd ExpReimburse/API
         dotnet test --no-build --verbosity normal
