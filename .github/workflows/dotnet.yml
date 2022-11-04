@@ -26,9 +26,9 @@ jobs:
         dotnet restore
     - name: Build
       run: 
-        ../../ExpReimburse/API
+        ../ExpReimburse/API
         dotnet build --no-restore
     - name: Test
       run: 
-        ../../ExpReimburse/API
+        ../ExpReimburse/API
         dotnet test --no-build --verbosity normal
