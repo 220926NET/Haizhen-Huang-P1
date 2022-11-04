@@ -21,14 +21,12 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: 
+      run: |
         cd ExpReimburse/API
         dotnet restore
     - name: Build
       run: 
-        cd ExpReimburse/API
         dotnet build --no-restore
     - name: Test
       run: 
-        cd ExpReimburse/API
         dotnet test --no-build --verbosity normal
