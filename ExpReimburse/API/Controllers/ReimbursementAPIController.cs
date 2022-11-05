@@ -126,7 +126,7 @@ namespace API.Controllers
             }
             else{
 
-                List<Ticket> returnTicket = await _service.viewPendingTicket(user);
+                List<Ticket> returnTicket = await _service.viewTicket(user);
                 if(returnTicket == null){
 
                     return NotFound("Employee cannot process request Or Login information incorrect");
